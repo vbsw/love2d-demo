@@ -12,10 +12,7 @@ state = {
     moving = false,
     speed = 100,
     info = true,
-    info_alpha = 1,
-    fps = 0,
-    fps_sum = 0,
-    dt_sum = 0
+    info_alpha = 1
 }
 
 function state_update_alpha(dt)
@@ -33,17 +30,5 @@ function state_update_alpha(dt)
                 state.info_alpha = 0
             end
         end
-    end
-end
-
-function state_update_fps(dt)
-    state.dt_sum = state.dt_sum + dt
-    state.fps_sum = state.fps_sum + 1
-    while state.dt_sum > 1 do
-        if state.fps_sum > 0 then
-            state.fps = state.fps_sum
-            state.fps_sum = 0
-        end
-        state.dt_sum = state.dt_sum - 1
     end
 end

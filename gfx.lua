@@ -80,7 +80,6 @@ function gfx_update(dt)
             end
         end
         state_update_alpha(dt)
-        state_update_fps(dt)
     end
 end
 
@@ -116,6 +115,6 @@ function gfx_draw()
         "info (on/off)", client_w/2+20-100, 160)
         love.graphics.setColor(0.9, 1, 0.9, 0.9*info_alpha)
         love.graphics.print("chibis\n" .. #chibis, client_w/2+20-100, 580)
-        love.graphics.print("FPS\n" .. state.fps, client_w/2+20-100+200, 580)
+        love.graphics.print("FPS\n" .. love.timer.getFPS(), client_w/2+20-100+200, 580)
     end
 end
