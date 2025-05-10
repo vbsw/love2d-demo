@@ -1,0 +1,30 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *.lua
+Copyright: 2025 Vitali Baumtrok <vbsw@mailbox.org>
+License: BSL-1.0
+
+Files: assets/chibi0.png
+Copyright: 2016 Mark Thomas
+License: CC-BY-NC-4.0
+Comment: The image "chibi0.png" has been originally published by Mark Thomas on <https://freepngimg.com/png/11332-chibi-png-pic> [accessed 2025-04-18] with the title "Chibi Png Pic". Image has been scaled down by Vitali Baumtrok.
+
+Files: assets/chibi1.png
+Copyright: 2016 Connie Sanders
+License: CC-BY-NC-4.0
+Comment: The image "chibi1.png" has been originally published by Connie Sanders on <https://freepngimg.com/png/11333-chibi-png-clipart> [accessed 2025-04-18] with the title "Chibi Png Clipart". Image has been scaled down by Vitali Baumtrok.
+
+Files: assets/chibi2.png
+Copyright: 2016 Catherine Marion
+License: CC-BY-NC-4.0
+Comment: The image "chibi2.png" has been originally published by Catherine Marion on <https://freepngimg.com/png/11338-chibi-png-hd> [accessed 2025-04-18] with the title "Chibi Png Hd". Image has been scaled down by Vitali Baumtrok.
+
+Files: assets/chibi3.png
+Copyright: 2016 Connie Sanders
+License: CC-BY-NC-4.0
+Comment: The image "chibi3.png" has been originally published by Connie Sanders on <https://freepngimg.com/png/11334-chibi-free-download-png> [accessed 2025-04-18] with the title "Chibi Free Download Png". Image has been scaled down by Vitali Baumtrok.
+
+Files: assets/chibi4.png
+Copyright: 2016 Shirley Keller
+License: CC-BY-NC-4.0
+Comment: The image "chibi4.png" has been originally published by Shirley Keller on <https://freepngimg.com/png/11337-chibi-download-png> [accessed 2025-04-18] with the title "Chibi Download Png". Image has been scaled down by Vitali Baumtrok.
