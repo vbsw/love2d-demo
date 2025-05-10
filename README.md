@@ -1,7 +1,7 @@
 # love2d-demo
 
 ## About
-love2d-demo is a demo of graphic animation using love2d framework. It is published on <https://github.com/vbsw/lov2d-demo> and <https://gitlab.com/vbsw/lov2d-demo>.
+love2d-demo is a demo of graphic animation using love2d framework. It is published on <https://github.com/vbsw/love2d-demo> and <https://gitlab.com/vbsw/love2d-demo>.
 
 ## Copyright
 See file COPYRIGHT.
