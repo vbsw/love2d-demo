@@ -8,6 +8,9 @@ require("input")
 require("gfx")
 
 function love.load()
+    -- profiler: https://github.com/2dengine/profile.lua
+    -- love.profiler = require("libs/profile")
+    -- love.profiler.start()
     love.keyboard.setKeyRepeat(true)
     assets_load()
 end

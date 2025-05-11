@@ -25,6 +25,14 @@ function input_key_pressed(scancode, isrepeat)
             state.rotating = not state.rotating
         elseif scancode == "m" then
             state.moving = not state.moving
+        --[[
+        elseif scancode == "t" then
+            love.report = love.profiler.report(20)
+            love.profiler.reset()
+            print(love.report)
+        ]]
+        elseif scancode == "v" then
+            love.window.setVSync(love.window.getVSync() == 0)
         elseif scancode == "c" then
             gfx_clear_chibis()
             state.chibis_count = 0

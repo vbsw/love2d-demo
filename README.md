@@ -7,9 +7,9 @@ love2d-demo is a demo of graphics animation using LÖVE (love2d) framework. It i
 See file COPYRIGHT.
 
 ## Executing Source (Windows)
-Download LÖVE (love2d) and this package. Drag-n-Drop this package on love.exe.
+Download LÖVE (love2d) and this source. Unpack the source. Drag-n-Drop the unpacked folder with source on love.exe.
 
-Demo was tested with LÖVE 11.5 and early build of 12.0.
+Demo was tested with LÖVE 11.5 and build of 12.0 from 12.04.2025.
 
 ## References
 - https://love2d.org

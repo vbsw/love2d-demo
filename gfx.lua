@@ -28,7 +28,7 @@ function gfx_add_chibis(count)
         local index = math.random(1, 5)
         local img_width = assets.widths[index]
         local img_height = assets.heights[index]
-        local img_quad = love.graphics.newQuad(0, 0, img_width, img_height, assets.chibi[index])
+        local img_quad = love.graphics.newQuad(0, 0, img_width, img_height, 512, 512)
         local movx = math.random()-0.50
         local movy = math.random()-0.50
         local rot_speed = math.random()*0.125-0.0625
@@ -36,8 +36,7 @@ function gfx_add_chibis(count)
         if movx >= 0 then movx = movx + 0.15 else movx = movx - 0.15 end
         if movy >= 0 then movy = movy + 0.15 else movy = movy - 0.15 end
         table.insert(chibis, {
-            img = assets.chibi[index],
-            img_mm = assets.chibi_mm[index],
+            idx = index,
             quad = img_quad,
             width = img_width,
             height = img_height,
@@ -88,12 +87,14 @@ function gfx_draw()
     local info_alpha = state.info_alpha
     love.graphics.setColor(1, 1, 1, 1)
     if state.mipmap then
+        local img_mm = assets.img_mm
         for i, chibi in ipairs(chibis) do
-            love.graphics.draw(chibi.img_mm, chibi.quad, chibi.x, chibi.y, chibi.r*180/math.pi, scale, scale, chibi.rx, chibi.ry)
+            love.graphics.drawLayer(img_mm, chibi.idx, chibi.quad, chibi.x, chibi.y, chibi.r*180/math.pi, scale, scale, chibi.rx, chibi.ry)
         end
     else
+        local img = assets.img
         for i, chibi in ipairs(chibis) do
-            love.graphics.draw(chibi.img, chibi.quad, chibi.x, chibi.y, chibi.r*180/math.pi, scale, scale, chibi.rx, chibi.ry)
+            love.graphics.drawLayer(img, chibi.idx, chibi.quad, chibi.x, chibi.y, chibi.r*180/math.pi, scale, scale, chibi.rx, chibi.ry)
         end
     end
     if info_alpha > 0 then
@@ -101,9 +102,12 @@ function gfx_draw()
         local xr = client_w/2+230+40
         love.graphics.setColor(0, 0, 0, 0.8*info_alpha)
         love.graphics.polygon("fill", xl,80, xr,80, xr,700, xl,700)
+        love.graphics.setColor(0.9, 1, 0.9, 0.9*info_alpha)
+        love.graphics.print("chibis\n" .. #chibis, client_w/2+20-100, 100)
+        love.graphics.print("FPS\n" .. love.timer.getFPS(), client_w/2+20-100+200, 100)
         love.graphics.setColor(1, 1, 1, 0.5*info_alpha)
-        love.graphics.print("controls", client_w/2+20-100, 100)
-        love.graphics.printf("1 - 5\nc\nm\nr\nj\na, s\nk,  l\nf\ni", (client_w)/2-120-100, 160, 100, "right")
+        love.graphics.print("controls", client_w/2+20-100, 220)
+        love.graphics.printf("1 - 5\nc\nm\nr\nj\na, s\nk,  l\nf\ni\nv", (client_w)/2-120-100, 280, 100, "right")
         love.graphics.print("spawn chibis\n" ..
         "clear screen\n" ..
         "movement (on/off)\n" ..
@@ -112,9 +116,7 @@ function gfx_draw()
         "de-/increment size\n" ..
         "de-/increment speed\n" ..
         "fullscreen (on/off)\n" ..
-        "info (on/off)", client_w/2+20-100, 160)
-        love.graphics.setColor(0.9, 1, 0.9, 0.9*info_alpha)
-        love.graphics.print("chibis\n" .. #chibis, client_w/2+20-100, 580)
-        love.graphics.print("FPS\n" .. love.timer.getFPS(), client_w/2+20-100+200, 580)
+        "info (on/off)\n" ..
+        "v-sync (on/off)", client_w/2+20-100, 280)
     end
 end
