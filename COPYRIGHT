@@ -1,8 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
-Files: *.lua
+Files: conf.lua main.lua
 Copyright: 2025 Vitali Baumtrok <vbsw@mailbox.org>
 License: BSL-1.0
+
+Files: libs/profile.lua
+Copyright: 2015 2dengine LLC
+License: MIT
 
 Files: assets/chibi0.png
 Copyright: 2016 Mark Thomas
