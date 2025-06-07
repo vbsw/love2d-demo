@@ -314,9 +314,8 @@ function toggle_profiler()
 		love.profiler.start()
 	-- (state.profiling == 1) is handled automatically
 	elseif state.profiling == 2 then
-			love.profiler.stop()
-			state.profiling = 0
-		end
+		love.profiler.stop()
+		state.profiling = 0
 	end
 end
 
