@@ -6,10 +6,12 @@ love2d-demo is a demo of graphics animation using LÖVE (love2d) framework. It i
 ## Copyright
 See file COPYRIGHT.
 
-## Executing Source (Windows)
-Download LÖVE (love2d) and this source. Unpack the source. Drag-n-Drop the unpacked folder with source on love.exe.
+## Additional Information
+Demo was tested with LÖVE 11.5 and 12.0 (build from 12.04.2025).
 
-Demo was tested with LÖVE 11.5 and build of 12.0 from 12.04.2025.
+The metrics shown (info display) with \* (star) are messured manually, the one without star by framework.
+
+Threaded logic can be enabled with "t" (not listed in info display). It leads to performance drop and shows the impact of copying large amount of data between threads.
 
 ## References
 - https://love2d.org
