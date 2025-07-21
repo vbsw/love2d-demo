@@ -64,10 +64,59 @@ function buffer_append(chibis, buffer)
 	end
 end
 
-function buffer_trim_chibis(chibis)
-	local result = {}
-	for i = 1, chibis.n do
-		result[i] = buffer.chibis[i]
+function buffer_trim(buffer)
+	local offset = buffer.offset
+	local unused = offset+(#buffer-buffer.n)
+	local used = buffer.n-offset
+	if unused > used or unused > 10000*10 then
+		local buffer_new = {}
+		for i = 1, buffer.n, 10 do
+			buffer_new[i+0] = buffer[offset+i+0]
+			buffer_new[i+1] = buffer[offset+i+1]
+			buffer_new[i+2] = buffer[offset+i+2]
+			buffer_new[i+3] = buffer[offset+i+3]
+			buffer_new[i+4] = buffer[offset+i+4]
+			buffer_new[i+5] = buffer[offset+i+5]
+			buffer_new[i+6] = buffer[offset+i+6]
+			buffer_new[i+7] = buffer[offset+i+7]
+			buffer_new[i+8] = buffer[offset+i+8]
+			buffer_new[i+9] = buffer[offset+i+9]
+		end
+		buffer_new.offset, buffer_new.n = buffer.offset, buffer.n
+		return buffer_new
 	end
-	return result
+	return buffer
+end
+
+function buffer_move(buffer_dest, buffer_src, n_max)
+	local i, j, n_src = buffer_dest.n+1, buffer_src.offset+1, buffer_src.n
+	while i < n_max and j < n_src do
+		buffer_dest[i+0] = buffer_src[j+0]
+		buffer_dest[i+1] = buffer_src[j+1]
+		buffer_dest[i+2] = buffer_src[j+2]
+		buffer_dest[i+3] = buffer_src[j+3]
+		buffer_dest[i+4] = buffer_src[j+4]
+		buffer_dest[i+5] = buffer_src[j+5]
+		buffer_dest[i+6] = buffer_src[j+6]
+		buffer_dest[i+7] = buffer_src[j+7]
+		buffer_dest[i+8] = buffer_src[j+8]
+		buffer_dest[i+9] = buffer_src[j+9]
+		i, j = i+10, j+10
+	end
+	buffer_dest.n = i-1
+	if j < n_src then
+		buffer_src.offset = j-1
+	else
+		buffer_src.offset, buffer_src.n = 0, 0
+	end
+end
+
+function buffer_next_remaining(buffers, j)
+	for i = j, #buffers do
+		local buffer = buffers[i]
+		if buffer.offset < buffer.n then
+			return buffer
+		end
+	end
+	return nil
 end
