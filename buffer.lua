@@ -68,7 +68,7 @@ function buffer_trim(buffer)
 	local offset = buffer.offset
 	local unused = offset+(#buffer-buffer.n)
 	local used = buffer.n-offset
-	if unused > used or unused > 10000*10 then
+	if unused > used or unused > 4999*10 then
 		local buffer_new = {}
 		for i = 1, buffer.n, 10 do
 			buffer_new[i+0] = buffer[offset+i+0]
@@ -82,7 +82,7 @@ function buffer_trim(buffer)
 			buffer_new[i+8] = buffer[offset+i+8]
 			buffer_new[i+9] = buffer[offset+i+9]
 		end
-		buffer_new.offset, buffer_new.n = buffer.offset, buffer.n
+		buffer_new.offset, buffer_new.n = 0, buffer.n-buffer.offset
 		return buffer_new
 	end
 	return buffer

@@ -185,7 +185,7 @@ function love.update(dt)
 			if state.rotating then
 				for i = 1, threads_count do
 					local chibs = chibis[i]
-					for j = 1, chibs.n, 10 do
+					for j = chibs.offset+1, chibs.n, 10 do
 						local r_degrees = chibs[j+5] + chibs[j+7]*dt -- r=r*rot_speed*dt
 						if r_degrees > 360 then
 							r_degrees = r_degrees - 360
@@ -202,7 +202,7 @@ function love.update(dt)
 				local speed = state.speed
 				for i = 1, threads_count do
 					local chibs = chibis[i]
-					for j = 1, chibs.n, 10 do
+					for j = chibs.offset+1, chibs.n, 10 do
 						local index, x, y, movx, movy = chibs[j], chibs[j+1], chibs[j+2], chibs[j+3], chibs[j+4]
 						local width, height = widths[index], heights[index]
 						if (x - width*scale/2 < padding and movx < 0) or (x > client_w - (width*scale/2+padding) and movx > 0) then
@@ -220,7 +220,7 @@ function love.update(dt)
 				local quads, chibiIdx = assets.quads, 0
 				for i = 1, threads_count do
 					local chibs = chibis[i]
-					for j = 1, chibs.n, 10 do
+					for j = chibs.offset+1, chibs.n, 10 do
 						local index, x, y, radian, rx, ry = chibs[j], chibs[j+1], chibs[j+2], chibs[j+6], chibs[j+8], chibs[j+9]
 						chibiIdx = chibiIdx + 1
 						spriteBatch:setLayer(chibiIdx, index, quads[index], x, y, radian, scale, scale, rx, ry)
@@ -372,9 +372,10 @@ function add_chibis(chibis_count_inc)
 				n_left = n_left-10
 				buffer.n = buffer.n + 10
 			end
+			chibis[i] = buffer_trim(buffer)
 			-- send chibis to threads
 			if state.threaded then
-				channels_cmd[i]:push({cmd = "chibis", chibis = buffer_trim(buffer)})
+				channels_cmd[i]:push({cmd = "chibis", chibis = chibis[i]})
 			end
 		end
 	end
@@ -466,8 +467,8 @@ end
 function toggle_threaded()
 	state.threaded = not state.threaded
 	if state.threaded then
-		for i = 1, threads_count do
-			channels_cmd[i]:push({cmd = "chibis", chibis = buffer_trim(chibis[i])})
+		for i = threads_count, 1, -1 do
+			channels_cmd[i]:push({cmd = "chibis", chibis = chibis[i]})
 		end
 		if state.batch then
 			channels_cmd[1]:push({cmd = "batch", spriteBatch = spriteBatch})

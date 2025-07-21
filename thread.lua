@@ -95,7 +95,7 @@ while running do
 	elseif data.cmd == "get" then
 		channel_rsp:push({chibis = chibis})
 	elseif data.cmd == "clear" then
-		chibis.offset, chibis.n = 0, 0
+		chibis = {offset = 0, n = 0}
 	end
 
 	data = channel_cmd:demand()
