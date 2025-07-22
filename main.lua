@@ -333,7 +333,7 @@ function add_chibis(chibis_count_inc)
 	end
 	for i = 1, threads_count do
 		if n_left > 0 then
-			-- distribute existing chibis
+			-- redistribute available chibis
 			local buffer, buffer_remaining = chibis[i], buffer_next_remaining(chibis, i+1)
 			while buffer_remaining do
 				local n = buffer.n
